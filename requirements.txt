@@ -1,0 +1,9 @@
+# Redrob AI Hackathon — Intelligent Candidate Discovery & Ranking
+# ================================================================
+# No external dependencies required - uses Python standard library only
+#
+# The scoring engine (scoring.py) and ranking pipeline (rank.py) rely
+# exclusively on built-in Python modules:
+#   - json, csv, gzip, argparse, time, os, sys, re, math
+#
+# Requires: Python 3.8+
