@@ -3,7 +3,7 @@
 # ============================================================================
 # Team identity
 # ============================================================================
-team_name: "Antigravity Rankers"
+team_name: "CodePhattGya"
 
 primary_contact:
   name: "Gaurav Tiwari"
@@ -14,16 +14,13 @@ team_members:
   - name: "Gaurav Tiwari"
     email: "gaurav@example.com"
     role: "Lead Engineer"
-  - name: "Google Antigravity"
-    email: "antigravity@google.com"
-    role: "AI Pair Programmer"
 
 # ============================================================================
 # Code and reproducibility
 # ============================================================================
-github_repo: "https://github.com/gauravtiwari/redrob-ranker-submission"
+github_repo: "https://github.com/harshisingh777/Redrob_CodePhattGya"
 
-sandbox_link: "https://huggingface.co/spaces/gauravtiwari/redrob-ranker-sandbox"
+sandbox_link: "https://codephattgya.streamlit.app"
 
 reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
 
@@ -45,13 +42,11 @@ compute:
 # AI tools declaration
 # ============================================================================
 ai_tools_used:
-  - "Google Antigravity"
+  - "LLM Assistants"
 
 ai_usage_summary: |
-  Used Google Antigravity (Advanced Agentic Coding assistant) for end-to-end pair programming.
-  Antigravity designed the architecture, implemented the 5-layer heuristic engine, built the
-  honeypot detection system, and orchestrated the ranking pipeline. No candidate data was
-  fed into any LLM at runtime due to CPU constraints.
+  Used LLM assistants for pair programming, code scaffolding, and designing the heuristic structures.
+  No candidate data was processed via external APIs due to local compute constraints.
 
 # ============================================================================
 # Approach summary (optional but recommended)

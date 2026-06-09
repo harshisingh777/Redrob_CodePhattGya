@@ -2,11 +2,11 @@ import streamlit as st
 import json
 import scoring
 
-st.set_page_config(page_title="Antigravity Ranker Sandbox", page_icon="⚖️", layout="wide")
+st.set_page_config(page_title="Redrob Ranker Sandbox", page_icon="⚖️", layout="wide")
 
 st.title("⚖️ Redrob Candidate Ranker Sandbox")
 st.markdown("""
-Welcome to the Antigravity Ranker Sandbox! 
+Welcome to the Redrob Ranker Sandbox! 
 Upload a candidate JSON or paste one below to see how our **5-layer heuristic engine** evaluates it in real-time.
 """)
 
