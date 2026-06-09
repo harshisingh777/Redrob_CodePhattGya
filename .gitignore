@@ -37,4 +37,5 @@ venv.bak/
 .idea/
 
 # Streamlit config/cache (if any)
-.streamlit/
+.streamlit/*
+!.streamlit/config.toml

@@ -18,9 +18,9 @@ candidate_data = None
 
 if upload:
     try:
-        # Read the first line if it's JSONL, or the whole file if it's a single JSON object
-        content = upload.getvalue().decode("utf-8").strip()
-        first_line = content.split('\n')[0]
+        # Read only the first line to prevent loading the entire large file into memory
+        first_line_bytes = upload.readline()
+        first_line = first_line_bytes.decode("utf-8").strip()
         candidate_data = json.loads(first_line)
     except Exception as e:
         st.sidebar.error(f"Error parsing upload: {e}")
