@@ -1,6 +1,10 @@
 # Redrob AI Hackathon — Intelligent Candidate Discovery & Ranking
 # ================================================================
-# No external dependencies required - uses Python standard library only
+# No external dependencies required for the core ranker (rank.py and scoring.py)
+# They use Python standard library only.
+#
+# The dependency below is strictly for the Streamlit Sandbox GUI (app.py)
+streamlit>=1.20.0
 #
 # The scoring engine (scoring.py) and ranking pipeline (rank.py) rely
 # exclusively on built-in Python modules:
