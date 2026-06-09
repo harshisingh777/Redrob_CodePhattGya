@@ -18,10 +18,20 @@ candidate_data = None
 
 if upload:
     try:
-        # Read only the first line to prevent loading the entire large file into memory
-        first_line_bytes = upload.readline()
-        first_line = first_line_bytes.decode("utf-8").strip()
-        candidate_data = json.loads(first_line)
+        # Check size of the uploaded file
+        if upload.size < 10 * 1024 * 1024:  # Less than 10MB, safe to parse entirely
+            content = upload.getvalue().decode("utf-8").strip()
+            try:
+                candidate_data = json.loads(content)
+            except json.JSONDecodeError:
+                # Fallback: try reading the first line as JSONL
+                first_line = content.split('\n')[0]
+                candidate_data = json.loads(first_line)
+        else:
+            # Large file (>10MB): read only the first line to prevent out-of-memory crashes
+            first_line_bytes = upload.readline()
+            first_line = first_line_bytes.decode("utf-8").strip()
+            candidate_data = json.loads(first_line)
     except Exception as e:
         st.sidebar.error(f"Error parsing upload: {e}")
 
@@ -29,9 +39,16 @@ elif json_text:
     try:
         candidate_data = json.loads(json_text)
     except Exception as e:
-        st.sidebar.error("Invalid JSON format.")
+        st.sidebar.error(f"Invalid JSON format.")
 
+# Extract the first candidate if the input data is a list/array of candidates
 if candidate_data:
+    if isinstance(candidate_data, list):
+        if len(candidate_data) > 0:
+            candidate_data = candidate_data[0]
+        else:
+            candidate_data = None
+            st.sidebar.error("The JSON list is empty.")
     st.header("Evaluating Candidate")
     
     profile = candidate_data.get('profile', {})
