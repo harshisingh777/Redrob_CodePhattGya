@@ -1,0 +1,77 @@
+# Redrob Hackathon — Submission Metadata
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "Antigravity Rankers"
+
+primary_contact:
+  name: "Gaurav Tiwari"
+  email: "gaurav@example.com"
+  phone: "+91-0000000000"
+
+team_members:
+  - name: "Gaurav Tiwari"
+    email: "gaurav@example.com"
+    role: "Lead Engineer"
+  - name: "Google Antigravity"
+    email: "antigravity@google.com"
+    role: "AI Pair Programmer"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/gauravtiwari/redrob-ranker-submission"
+
+sandbox_link: "https://huggingface.co/spaces/gauravtiwari/redrob-ranker-sandbox"
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local Windows Workstation"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.10"
+  os: "Windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+ai_tools_used:
+  - "Google Antigravity"
+
+ai_usage_summary: |
+  Used Google Antigravity (Advanced Agentic Coding assistant) for end-to-end pair programming.
+  Antigravity designed the architecture, implemented the 5-layer heuristic engine, built the
+  honeypot detection system, and orchestrated the ranking pipeline. No candidate data was
+  fed into any LLM at runtime due to CPU constraints.
+
+# ============================================================================
+# Approach summary (optional but recommended)
+# ============================================================================
+methodology_summary: |
+  Rule-based, 5-layer heuristic ranker with explicit reasoning generation and decoupled honeypot detection.
+  Scoring components: Title & Career Fit (40%, highest weight to avoid keyword stuffers), Skills Trust
+  (20%, cross-validates with endorsements & durations), Behavioral Availability (20%, uses response rates),
+  Logistics (10%), and Experience/Education (10%).
+  
+  Honeypot detection uses 7 strict checks (e.g., impossible tenure, expert with zero evidence, career overlaps)
+  and penalizes composite scores by 40%. The system processes 100K candidates natively in Python (no ML libraries)
+  in under 3 minutes on a single CPU core, producing detailed, fact-based reasoning for the top 100.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
