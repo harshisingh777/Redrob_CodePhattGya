@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 import io
+import csv
 import scoring
 
 # ---------------------------------------------------------------------------
@@ -199,9 +200,11 @@ def stream_and_rank(file_obj, top_n, max_candidates):
     honeypots = []
     seen = 0
 
-    text_stream = io.TextIOWrapper(file_obj, encoding="utf-8", errors="replace")
-    for raw_line in text_stream:
-        line = raw_line.strip()
+    for raw_bytes in file_obj:
+        try:
+            line = raw_bytes.decode("utf-8", errors="replace").strip() if isinstance(raw_bytes, bytes) else raw_bytes.strip()
+        except Exception:
+            continue
         if not line:
             continue
         try:
@@ -340,7 +343,7 @@ else:
         "candidate and display a ranked leaderboard."
     )
 
-    col_a, col_b = st.sidebar.columns(2)
+    # Sidebar controls for ranking
     top_n = st.sidebar.slider("Show top N candidates:", 5, 200, 100, step=5)
     max_cands = st.sidebar.number_input(
         "Max candidates to read (0 = all):", min_value=0, max_value=100000,
@@ -386,8 +389,7 @@ else:
             st.dataframe(display_rows, use_container_width=True, height=500)
 
             # CSV download
-            import csv, io as sio
-            buf = sio.StringIO()
+            buf = io.StringIO()
             writer = csv.DictWriter(buf, fieldnames=display_cols)
             writer.writeheader()
             writer.writerows(display_rows)
